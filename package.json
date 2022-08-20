@@ -1,0 +1,18 @@
+{
+  "name": "blini",
+  "version": "0.1.0",
+  "description": "Chatbot module based on second-order Markov chains",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Raphaël Zumer",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/rzumer/blini/issues"
+  },
+  "homepage": "https://github.com/rzumer/blini#readme",
+  "dependencies": {
+    "tiny-segmenter": "^0.2.0"
+  }
+}
