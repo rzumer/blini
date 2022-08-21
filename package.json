@@ -13,6 +13,8 @@
   },
   "homepage": "https://github.com/rzumer/blini#readme",
   "dependencies": {
-    "tiny-segmenter": "^0.2.0"
+    "canvas": "^2.8.0",
+    "tiny-segmenter": "^0.2.0",
+    "uuid": "^8.3.2"
   }
 }

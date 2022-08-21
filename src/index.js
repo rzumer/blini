@@ -1,3 +1,5 @@
+const img = require('./img');
+const fs = require('fs');
 const ts = require('tiny-segmenter');
 const SEGMENTER = new ts();
 const NONWORD = '\n';
@@ -26,7 +28,7 @@ class Blini {
     dictionary = {};
     images = {};
     maxChain = 100;
-    imageFonts = {};
+    imageFonts = [];
     lastImage;
 
     /**
@@ -243,6 +245,28 @@ class Blini {
 
         const msgString = trimSpaces(outputWords.join(' '));
         return msgString.length === 0 ? '?' : msgString;
+    }
+
+    /**
+     * @callback generateImageCallback
+     * @param {string} imagePath
+     */
+    /**
+     * Renders a random learned image with generated text overlaid on top.
+     * @param {string} context
+     * @param {generateImageCallback} callback
+     */
+    generateImage(context, callback) {
+        img.generateImage(this, context).then(imagePath => {
+            callback(imagePath).then(_ => {
+                if (imagePath) {
+                    fs.unlinkSync(imagePath);
+                }
+            }).catch(_ => {});
+        }).catch(error => {
+            console.log(error);
+            callback(imagePath).catch(_ => {});
+        });
     }
 }
 
