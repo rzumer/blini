@@ -23,7 +23,7 @@ console.log(blini.generateOutput('goodbye and hello')); // Generates output with
 
 Example output:
 
-```sh
+```
 hello world and hello blini
 hello blini
 hello world and hello blini
@@ -84,3 +84,22 @@ blini.generateImage('hello world', async function(imagePath) {
 Example output:
 
 ![Sample image with generated text overlaid on top](example.png "Example image")
+
+### Tagging
+It's possible to filter the vocabulary based on arbitrary metadata gathered at input time. One simple example is to tag chat messages by author, and generate output based on input from a specific author:
+```javascript
+const blini = new (require('blini')).Blini();
+blini.processInput('hello world and hello blini', { author: 'rzumer' });
+blini.processInput('hello alfred and goodbye blini', { author: 'someguy' });
+console.log(blini.generateOutput('hello')); // Generates output without tag filtering
+console.log(blini.generateOutput('hello', 'author', 'rzumer')); // Generates output with tag filtering
+console.log(blini.generateOutput('goodbye', 'author', 'rzumer')); // Generates output with tag filtering, but context missing from the tagged author's vocabulary
+```
+
+Example output:
+
+```
+hello alfred and goodbye blini
+hello world and hello blini
+goodbye?
+```
