@@ -56,9 +56,7 @@ There are some special requirements to enable image generation.
 * It needs its `imageFonts` property set to a list of fonts to use for overlaying text on top of images. You can specify multiple fonts to cover a larger range of character sets, for example latin characters, Chinese characters, emoji, etc.
     * Fonts must be objects with `path` and `family` properties. You can use relative paths, based on your application's working directory, and copy the fonts you need manually for portability.
 
-And some restrictions:
-* Images must have an aspect ratio no higher than 2.5 in either direction.
-* Some hosts may reject image requests (if a 403 error is reported in the console, that is likely the problem).
+To ensure that overlaid text has enough space to be readable, images must have an aspect ratio no higher than 2.5 in either direction.
 ```javascript
 const blini = new (require('blini')).Blini();
 blini.imageFonts.push({ path: '.fonts/NotoSans-Bold.ttf', family: 'Noto Sans' });
