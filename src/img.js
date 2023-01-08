@@ -76,7 +76,7 @@ async function generateImage(blini, context) {
     if (!baseImage) {
         console.log(`Failed to get image ${randomImage}`);
         blini.removeImage(randomImage);
-        return null;
+        return generateImage(blini, context);
     }
 
     canvas.width = outputSize, canvas.height = outputSize;
